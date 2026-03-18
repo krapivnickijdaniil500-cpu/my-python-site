@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Emerald Academy</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020617;
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.2);
+            --card-bg: rgba(6, 78, 59, 0.15);
+            --text: #ecfdf5;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            background-image: radial-gradient(circle at top right, #064e3b, transparent 40%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--emerald);
+            text-shadow: 0 0 20px var(--emerald-glow);
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--emerald);
+            box-shadow: 0 0 30px var(--emerald-glow);
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: var(--emerald);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 15px; }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .features li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 5px;
+            color: #d1fae5;
+        }
+
+        .features li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--emerald);
+        }
+
+        pre {
+            background: #000;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            overflow-x: auto;
+        }
+
+        .kw { color: #34d399; font-weight: bold; }
+        .str { color: #fcd34d; }
+        .num { color: #60a5fa; }
+
+        footer { text-align: center; padding: 60px; opacity: 0.5; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Python Emerald Guide</h1>
+    <p>Профессиональный справочник в изумрудных тонах</p>
+</header>
+
+<div class="container">
+    
+    <!-- 1. Переменные -->
+    <div class="card">
+        <h2>01. Переменные (Variables)</h2>
+        <p class="info">Объекты в памяти, на которые ссылаются имена. Тип определяется динамически.</p>
+        <ul class="features">
+            <li>Автоматическое управление памятью</li>
+            <li>Snake_case для именования</li>
+            <li>f-строки для быстрого вывода</li>
+        </ul>
+        <pre><code>name = <span class="str">"Emerald"</span>
+ver = <span class="num">3.12</span>
+<span class="kw">print</span>(f<span class="str">"{name} v{ver}"</span>)</code></pre>
+    </div>
+
+    <!-- 2. Списки -->
+    <div class="card">
+        <h2>02. Списки (Lists)</h2>
+        <p class="info">Динамические упорядоченные массивы. Позволяют изменять данные.</p>
+        <ul class="features">
+            <li>Метод <b>.append()</b> для добавления</li>
+            <li>Метод <b>.pop()</b> для удаления</li>
+            <li>Срезы: <b>[start:stop:step]</b></li>
+        </ul>
+        <pre><code>data = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+data.append(<span class="num">4</span>)
+subset = data[<span class="num">0</span>:<span class="num">2</span>]</code></pre>
+    </div>
+
+    <!-- 3. Условия -->
+    <div class="card">
+        <h2>03. Условия (Logic)</h2>
+        <p class="info">Операторы ветвления для принятия решений в зависимости от результата выражения.</p>
+        <ul class="features">
+            <li><b>if / elif / else</b></li>
+            <li>Логические <b>and / or / not</b></li>
+            <li>Тернарный оператор: <b>A if C else B</b></li>
+        </ul>
+        <pre><code><span class="kw">if</span> score > <span class="num">90</span>:
+    res = <span class="str">"Win"</span>
+<span class="kw">else</span>:
+    res = <span class="str">"Try again"</span></code></pre>
+    </div>
+
+    <!-- 4. Цикл For -->
+    <div class="card">
+        <h2>04. Цикл For</h2>
+        <p class="info">Используется для перебора последовательностей (списков, строк, словарей).</p>
+        <ul class="features">
+            <li>Функция <b>range()</b> для счета</li>
+            <li>Функция <b>enumerate()</b> для индексов</li>
+            <li>Поддерживает <b>break</b> и <b>continue</b></li>
+        </ul>
+        <pre><code><span class="kw">for</span> i <span class="kw">in</span> range(<span class="num">5</span>):
+    <span class="kw">print</span>(i * <span class="num">10</span>)</code></pre>
+    </div>
+
+    <!-- 5. Словари -->
+    <div class="card">
+        <h2>05. Словари (Dicts)</h2>
+        <p class="info">Коллекции пар "ключ-значение". Оптимизированы для мгновенного поиска.</p>
+        <ul class="features">
+            <li>Ключи всегда уникальны</li>
+            <li>Метод <b>.get()</b> против ошибок</li>
+            <li>Метод <b>.update()</b> для слияния</li>
+        </ul>
+        <pre><code>user = {<span class="str">"id"</span>: <span class="num">1</span>, <span class="str">"val"</span>: <span class="str">"ok"</span>}
+val = user.get(<span class="str">"key"</span>, <span class="num">0</span>)</code></pre>
+    </div>
+
+    <!-- 6. Функции -->
+    <div class="card">
+        <h2>06. Функции (Def)</h2>
+        <p class="info">Блоки кода для многократного использования с параметрами и возвратом.</p>
+        <ul class="features">
+            <li>Аргументы по умолчанию</li>
+            <li><b>*args</b> и <b>**kwargs</b></li>
+            <li>Документирование через <b>docstrings</b></li>
+        </ul>
+        <pre><code><span class="kw">def</span> <span class="kw">calc</span>(x, y=<span class="num">1</span>):
+    <span class="kw">return</span> x * y</code></pre>
+    </div>
+
+    <!-- 7. Исключения -->
+    <div class="card">
+        <h2>07. Исключения (Try)</h2>
+        <p class="info">Механизм перехвата ошибок для предотвращения аварийной остановки.</p>
+        <ul class="features">
+            <li>Блок <b>try/except</b></li>
+            <li>Блок <b>finally</b> для очистки</li>
+            <li>Вызов ошибок через <b>raise</b></li>
+        </ul>
+        <pre><code><span class="kw">try</span>:
+    num = <span class="num">10</span> / <span class="num">0</span>
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="kw">print</span>(<span class="str">"Oops!"</span>)</code></pre>
+    </div>
+
+    <!-- 8. Работа с файлами -->
+    <div class="card">
+        <h2>08. Работа с файлами</h2>
+        <p class="info">Чтение и запись данных на диск с использованием менеджеров контекста.</p>
+        <ul class="features">
+            <li>Оператор <b>with</b></li>
+            <li>Режимы <b>'r', 'w', 'a'</b></li>
+            <li>Авто-закрытие файлов</li>
+        </ul>
+        <pre><code><span class="kw">with</span> open(<span class="str">"f.txt"</span>, <span class="str">"w"</span>) <span class="kw">as</span> f:
+    f.write(<span class="str">"Python Emerald"</span>)</code></pre>
+    </div>
+
+    <!-- 9. Модули (Import) -->
+    <div class="card">
+        <h2>09. Модули (Modules)</h2>
+        <p class="info">Подключение встроенных и сторонних библиотек через пакетный менеджер PIP.</p>
+        <ul class="features">
+            <li>Стандартная библиотека (math, os)</li>
+            <li>Установка через <b>pip install</b></li>
+            <li>Создание своих пакетов</li>
+        </ul>
+        <pre><code><span class="kw">import</span> math
+res = math.sqrt(<span class="num">64</span>)</code></pre>
+    </div>
+
+    <!-- 10. ООП (Classes) -->
+    <div class="card">
+        <h2>10. ООП (Classes)</h2>
+        <p class="info">Парадигма программирования на основе объектов и классов.</p>
+        <ul class="features">
+            <li>Инкапсуляция данных</li>
+            <li>Наследование свойств</li>
+            <li>Метод <b>__init__</b> (конструктор)</li>
+        </ul>
+        <pre><code><span class="kw">class</span> <span class="kw">Bot</span>:
+    <span class="kw">def</span> <span class="kw">__init__</span>(self, n):
+        self.name = n</code></pre>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2024 Emerald Python Academy. Чистый код. Красивый стиль.
+</footer>
+
+</body>
+</html>
