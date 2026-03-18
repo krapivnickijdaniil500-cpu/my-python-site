@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 20: Полный курс</title>
+    <!-- Шрифты: Inter для чтения, Fira Code для кода -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020617;
+            --emerald: #10b981;
+            --emerald-light: #34d399;
+            --card-bg: #0f172a;
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(16, 185, 129, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            /* Адаптивный размер шрифта: база 16px, растет с экраном */
+            font-size: clamp(14px, 1vw + 10px, 18px);
+        }
+
+        header {
+            padding: 80px 5%;
+            text-align: center;
+            background: radial-gradient(circle at center, #064e3b33 0%, transparent 70%);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--emerald);
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            /* Адаптивная сетка: 1 колонка на мобайле, до 4 на ПК */
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .container { grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--emerald);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .card h2 {
+            color: var(--emerald-light);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p { margin-bottom: 15px; color: var(--text-dim); }
+
+        .details {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .details b { color: var(--emerald); }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #a7f3d0;
+            overflow-x: auto;
+            border: 1px solid #1e293b;
+        }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 50px; }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--emerald); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Python 20: Master Guide</h1>
+    <p>От основ синтаксиса до архитектуры приложений</p>
+</header>
+
+<div class="container">
+    <!-- 01 Переменные -->
+    <div class="card">
+        <h2>01. Динамические переменные</h2>
+        <p>Python использует ссылки на объекты. Тип данных определяется в момент присваивания значения.</p>
+        <div class="details"><b>Типы:</b> int (целые), float (дробные), str (строки), bool (логика).</div>
+        <pre><code>x = 10          # int
+name = "Dev"    # str
+is_ok = True    # bool</code></pre>
+    </div>
+
+    <!-- 02 f-строки -->
+    <div class="card">
+        <h2>02. Форматирование (f-strings)</h2>
+        <p>Самый быстрый и удобный способ вставлять переменные прямо в текст через фигурные скобки.</p>
+        <div class="details"><b>Фишка:</b> Можно выполнять вычисления прямо внутри {}.</div>
+        <pre><code>price = 100
+print(f"Итого: {price * 0.9} руб.")</code></pre>
+    </div>
+
+    <!-- 03 Списки -->
+    <div class="card">
+        <h2>03. Списки (Lists)</h2>
+        <p>Упорядоченные коллекции элементов. Индексация начинается с нуля.</p>
+        <div class="details"><b>Методы:</b> append (добавить), pop (удалить), sort (сортировка).</div>
+        <pre><code>users = ["Ivan", "Anna"]
+users.append("Max")
+print(users[1]) # Anna</code></pre>
+    </div>
+
+    <!-- 04 Условия -->
+    <div class="card">
+        <h2>04. Логические условия</h2>
+        <p>Операторы if, elif и else управляют потоком выполнения программы.</p>
+        <div class="details"><b>Важно:</b> В Python отступы (4 пробела) определяют блоки кода.</div>
+        <pre><code>if age >= 18:
+    print("Доступ открыт")
+else:
+    print("Рано")</code></pre>
+    </div>
+
+    <!-- 05 Цикл For -->
+    <div class="card">
+        <h2>05. Итерация (Цикл For)</h2>
+        <p>Используется для перебора списков, строк или диапазонов чисел.</p>
+        <div class="details"><b>Range:</b> range(5) создаст числа от 0 до 4.</div>
+        <pre><code>for i in range(3):
+    print(f"Шаг №{i}")</code></pre>
+    </div>
+
+    <!-- 06 Словари -->
+    <div class="card">
+        <h2>06. Словари (Dict)</h2>
+        <p>Хранение данных в формате Ключ: Значение. Работает молниеносно.</p>
+        <div class="details"><b>Ключи:</b> Должны быть уникальными и неизменяемыми.</div>
+        <pre><code>car = {"brand": "Tesla", "year": 2023}
+print(car["brand"])</code></pre>
+    </div>
+
+    <!-- 07 Функции -->
+    <div class="card">
+        <h2>07. Функции (def)</h2>
+        <p>Используются для группировки кода, который нужно выполнять многократно.</p>
+        <div class="details"><b>Return:</b> Возвращает результат работы функции обратно.</div>
+        <pre><code>def square(n):
+    return n * n
+res = square(5) # 25</code></pre>
+    </div>
+
+    <!-- 08 Кортежи -->
+    <div class="card">
+        <h2>08. Кортежи (Tuples)</h2>
+        <p>Похожи на списки, но их нельзя изменить после создания (Immutable).</p>
+        <div class="details"><b>Зачем:</b> Работают быстрее списков и защищают данные.</div>
+        <pre><code>point = (10, 20)
+# point[0] = 5 # Вызовет ошибку!</code></pre>
+    </div>
+
+    <!-- 09 Множества -->
+    <div class="card">
+        <h2>09. Множества (Sets)</h2>
+        <p>Коллекции, содержащие только уникальные элементы в случайном порядке.</p>
+        <div class="details"><b>Применение:</b> Удаление дубликатов из списка за один шаг.</div>
+        <pre><code>nums = {1, 2, 2, 3}
+print(nums) # {1, 2, 3}</code></pre>
+    </div>
+
+    <!-- 10 Обработка ошибок -->
+    <div class="card">
+        <h2>10. Исключения (Try/Except)</h2>
+        <p>Позволяют программе не "падать" при возникновении ошибок (например, делении на 0).</p>
+        <div class="details"><b>Блок finally:</b> Выполнится в любом случае (даже при ошибке).</div>
+        <pre><code>try:
+    val = 10 / 0
+except ZeroDivisionError:
+    print("Ошибка деления!")</code></pre>
+    </div>
+
+    <!-- 11 Срезы -->
+    <div class="card">
+        <h2>11. Срезы (Slicing)</h2>
+        <p>Мощный инструмент получения частей строк или списков.</p>
+        <pre><code>s = "Python"
+print(s[:2])  # Py
+print(s[::-1]) # nohtyP</code></pre>
+    </div>
+
+    <!-- 12 Lambda -->
+    <div class="card">
+        <h2>12. Ламбда-функции</h2>
+        <p>Анонимные функции в одну строку для простых операций.</p>
+        <pre><code>add = lambda a, b: a + b
+print(add(5, 3)) # 8</code></pre>
+    </div>
+
+    <!-- 13 Генераторы списков -->
+    <div class="card">
+        <h2>13. List Comprehensions</h2>
+        <p>Создание списков в одну строку кода (Pythonic way).</p>
+        <pre><code>sq = [x*x for x in range(5)]
+# [0, 1, 4, 9, 16]</code></pre>
+    </div>
+
+    <!-- 14 Менеджеры контекста -->
+    <div class="card">
+        <h2>14. Конструкция With</h2>
+        <p>Гарантирует закрытие файлов или ресурсов после работы.</p>
+        <pre><code>with open("file.txt", "w") as f:
+    f.write("Hello")</code></pre>
+    </div>
+
+    <!-- 15 Классы -->
+    <div class="card">
+        <h2>15. Классы (ООП)</h2>
+        <p>Создание собственных объектов со свойствами и методами.</p>
+        <pre><code>class Cat:
+    def meow(self):
+        print("Мяу!")
+
+my_cat = Cat()</code></pre>
+    </div>
+
+    <!-- 16 Модули -->
+    <div class="card">
+        <h2>16. Импорт библиотек</h2>
+        <p>Использование готового кода от других разработчиков.</p>
+        <pre><code>import math
+print(math.sqrt(16)) # 4.0</code></pre>
+    </div>
+
+    <!-- 17 Map и Filter -->
+    <div class="card">
+        <h2>17. Map и Filter</h2>
+        <p>Функции высшего порядка для обработки коллекций данных.</p>
+        <pre><code>nums = [1, 2, 3]
+new = list(map(lambda x: x*2, nums))</code></pre>
+    </div>
+
+    <!-- 18 *args и **kwargs -->
+    <div class="card">
+        <h2>18. Гибкие аргументы</h2>
+        <p>Позволяют функции принимать любое количество параметров.</p>
+        <pre><code>def func(*args):
+    return sum(args)</code></pre>
+    </div>
+
+    <!-- 19 Декораторы -->
+    <div class="card">
+        <h2>19. Декораторы</h2>
+        <p>Функции, которые оборачивают другой код, добавляя ему логику.</p>
+        <pre><code>@my_timer
+def fast_func():
+    pass</code></pre>
+    </div>
+
+    <!-- 20 PIP и Пакеты -->
+    <div class="card">
+        <h2>20. Управление пакетами</h2>
+        <p>Использование PIP для установки внешних модулей (Requests, Pandas).</p>
+        <pre><code># В терминале:
+pip install requests</code></pre>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Python Emerald Academy. Изучай с удовольствием на любом устройстве.</p>
+</footer>
+
+</body>
+</html>
