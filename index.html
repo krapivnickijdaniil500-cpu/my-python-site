@@ -307,6 +307,156 @@ pip install requests</code></pre>
 <footer>
     <p>&copy; 2024 Python Emerald Academy. Изучай с удовольствием на любом устройстве.</p>
 </footer>
+<!-- Раздел: Интерактивный калькулятор и его код -->
+<hr>
+<section style="margin: 40px 0; font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin-left: auto; margin-right: auto;">
+    <h2 style="text-align: center; color: #3776ab;">🧮 Интерактивный калькулятор</h2>
+    <p style="text-align: center; color: #666;">Слева — интерфейс (HTML), справа — логика обработки (Python)</p>
+    
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: stretch;">
+        
+        <!-- ЛЕВАЯ ЧАСТЬ: Интерфейс на HTML -->
+        <!-- Секция Калькулятора -->
+<section style="max-width: 300px; margin: 200px auto; padding: 20px; background: #222; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: sans-serif;">
+    <!-- Табло вывода -->
+    <input type="text" id="display" readonly 
+        style="width: 100%; height: 60px; margin-bottom: 20px; text-align: right; padding: 10px; font-size: 24px; border: none; background: #333; color: #fff; border-radius: 10px; box-sizing: border-box;">
+    
+    <!-- Кнопки --> 
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <!-- Очистка -->
+        <button onclick="clearDisplay()" style="grid-column: span 2; background: #ff5f56; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">C</button>
+        <button onclick="appendToDisplay('/')" style="background: #ffbd2e; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">/</button>
+        <button onclick="appendToDisplay('*')" style="background: #ffbd2e; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">*</button>
+
+        <button onclick="appendToDisplay('7')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">7</button>
+        <button onclick="appendToDisplay('8')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">8</button>
+        <button onclick="appendToDisplay('9')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">9</button>
+        <button onclick="appendToDisplay('-')" style="background: #ffbd2e; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">-</button>
+
+        <button onclick="appendToDisplay('4')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">4</button>
+        <button onclick="appendToDisplay('5')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">5</button>
+        <button onclick="appendToDisplay('6')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">6</button>
+        <button onclick="appendToDisplay('+')" style="background: #ffbd2e; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">+</button>
+
+        <button onclick="appendToDisplay('1')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">1</button>
+        <button onclick="appendToDisplay('2')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">2</button>
+        <button onclick="appendToDisplay('3')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">3</button>
+        <button onclick="calculateResult()" style="grid-row: span 2; background: #27c93f; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold;">=</button>
+
+        <button onclick="appendToDisplay('0')" style="grid-column: span 2; background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">0</button>
+        <button onclick="appendToDisplay('.')" style="background: #444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer;">.</button>
+    </div>
+</section>
+
+<!-- Логика калькулятора -->
+<script>
+    const display = document.getElementById('display');
+
+    function appendToDisplay(input) {
+        display.value += input;
+    }
+
+    function clearDisplay() {
+        display.value = "";
+    }
+
+    function calculateResult() {
+        try {
+            // eval выполняет строку как математическое выражение
+            display.value = eval(display.value);
+        } catch (error) {
+            display.value = "Ошибка";
+        }
+    }
+</script>
+
+
+        <!-- ПРАВАЯ ЧАСТЬ: Открытый код Python -->
+        <div style="flex: 1.2; min-width: 300px; background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
+            <h4 style="margin-top: 0; color: #4ec9b0; border-bottom: 1px solid #333; padding-bottom: 10px;">🐍 Исходный код (logic.py)</h4>
+            <pre style="margin: 0; font-family: 'Consolas', 'Monaco', monospace; line-height: 1.6; font-size: 13px; overflow-x: auto; padding-top: 10px;">
+<span style="color: #6a9955;"></span>
+print("--- Мини-калькулятор ---")
+
+# Запрашиваем данные у пользователя
+a = float(input("Введите первое число: "))
+operation = input("Выберите действие (+, -, *, /): ")
+b = float(input("Введите второе число: "))
+
+# Логика вычислений
+if operation == '+':
+    result = a + b
+    print(f"Результат: {a} + {b} = {result}")
+elif operation == '-':
+    result = a - b
+    print(f"Результат: {a} - {b} = {result}")
+elif operation == '*':
+    result = a * b
+    print(f"Результат: {a} * {b} = {result}")
+elif operation == '/':
+    # Проверка деления на ноль
+    if b != 0:
+        result = a / b
+        print(f"Результат: {a} / {b} = {result}")
+    else:
+        print("Ошибка: на ноль делить нельзя!")
+else:
+    print("Ошибка: неверная операция.")
+
+print("------------------------")
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- Движок для запуска Python в браузере -->
+<script src="https://cdn.jsdelivr.net"></script>
+
+<script>
+    async function calculate() {
+        const btn = document.getElementById("run-btn");
+        const resBox = document.getElementById("res-box");
+        
+        const a = document.getElementById("valA").value;
+        const b = document.getElementById("valB").value;
+        const op = document.getElementById("oper").value;
+
+        btn.disabled = true;
+        btn.innerText = "⏳ Вычисление...";
+        resBox.innerText = "Обработка...";
+
+        try {
+            let pyodide = await loadPyodide();
+            
+            // Выполняем расчет через Python
+            await pyodide.runPythonAsync(`
+                input_a = ${a}
+                input_b = ${b}
+                op = '${op}'
+                
+                if op == '+':
+                    res = input_a + input_b
+                elif op == '-':
+                    res = input_a - input_b
+                elif op == '*':
+                    res = input_a * input_b
+                elif op == '/':
+                    res = input_a / input_b if input_b != 0 else "Ошибка: / 0"
+                else:
+                    res = "Error"
+            `);
+            
+            const finalResult = pyodide.globals.get("res");
+            resBox.innerText = `Результат: ${finalResult}`;
+        } catch (err) {
+            resBox.innerText = "❌ Ошибка в коде";
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Вычислить через Python";
+        }
+    }
+</script>
 
 </body>
 </html>
